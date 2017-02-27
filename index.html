@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>ToDo List</title>
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+	<link rel="stylesheet" href="css/bulma.css">
+</head>
+<body>
+	<div class="container is-fluid">
+		<div class="header">
+			<section class="hero is-medium is-info is-bold">
+				<div class="hero-body">
+					<div class="container">
+						<p class="title">
+							A simple ToDo list
+						</p>
+						<div id="app">
+							<p class="subtitle">
+								Built using Vue-js
+							</p>
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
+
+		<div class="columns is-gapless" id="events">
+			<div class="column" >
+				<section class="notification is-success">
+					<h2 class="notification is-warning">Event Management :</h2>
+					<label class="label">Title</label>
+					<p class="control">
+						<input class="input" type="text" placeholder="Enter the title of the task" v-model="event.title">
+					</p>
+					
+					<label class="label">Details</label>
+					<p class="control">
+						<textarea class="textarea" placeholder="Give Details about what you wish to do." v-model="event.description"></textarea>
+					</p>
+					<div class="control is-grouped">
+						<p class="control">
+							<button class="button is-primary" v-on:click="addEvent">Submit</button>
+						</p>
+						<p class="control">
+							<button class="button is-link" v-on:click="cancel">Cancel</button>
+						</p>
+					</div>
+				</section>
+			</div>
+			<div class="column">
+				<section class="notification is-danger">
+					<h2 class="notification is-warning">Events Stored :</h2>
+					<div>
+						<div class="card" v-for="(event,index) in events">
+							<header class="card-header">
+								<p class="card-header-title" v-if="event.title">
+									{{ event.title}}
+								</p>
+								<a class="card-header-icon">
+									<span class="icon">
+										<i class="fa fa-angle-down"></i>
+									</span>
+								</a>
+							</header>
+							<div class="card-content">
+								<div class="content" v-if="event.description">
+									{{ event.description }}
+								</div>
+							</div>
+							<footer class="card-footer">
+								<a class="card-footer-item" v-on:click="editEvent(index)">Edit</a>
+								<a class="card-footer-item" v-on:click="deleteEvent(index)">Delete</a>
+							</footer>
+						</div>
+						<br>
+					</div>
+				</section>
+			</div>
+		</div>
+	</div>
+	<script src="scripts/vue.js"></script>
+	<script src="scripts/script1.js"> </script>
+
+</body>
+</html>
